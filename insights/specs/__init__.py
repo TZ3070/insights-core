@@ -433,6 +433,8 @@ class Specs(SpecSet):
     ls_laZ_dirs = RegistryPoint(filterable=True)
     ls_ldH = RegistryPoint()
     ls_ldH_items = RegistryPoint(filterable=True)
+    ls_ldZ = RegistryPoint()
+    ls_ldZ_items = RegistryPoint(filterable=True)
     # Useful for SoS
     ls_boot = RegistryPoint()
     ls_dev = RegistryPoint()
@@ -676,6 +678,7 @@ class Specs(SpecSet):
     readlink_e_etc_mtab = RegistryPoint(no_obfuscate=['hostname', 'ipv4', 'ipv6', 'mac'])
     readlink_e_shift_cert_client = RegistryPoint(no_obfuscate=['hostname', 'ipv4', 'ipv6', 'mac'])
     readlink_e_shift_cert_server = RegistryPoint(no_obfuscate=['hostname', 'ipv4', 'ipv6', 'mac'])
+    rear_default_conf = RegistryPoint(filterable=True)
     rear_local_conf = RegistryPoint(filterable=True)
     recvq_socket_buffer = RegistryPoint()
     redhat_release = RegistryPoint(no_obfuscate=['hostname', 'ipv4', 'ipv6', 'mac'])

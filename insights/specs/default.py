@@ -180,7 +180,7 @@ class DefaultSpecs(Specs):
     bond_dynamic_lb = glob_file("/sys/class/net/*/bonding/tlb_dynamic_lb")
     boot_loader_entries = glob_file("/boot/loader/entries/*.conf")
     bootc_status = simple_command("/usr/bin/bootc status --json")
-    bootctl_status = simple_command("/usr/bin/bootctl status")
+    bootctl_status = simple_command("/usr/bin/bootctl status", keep_rc=True)
     buddyinfo = simple_file("/proc/buddyinfo")
     brctl_show = simple_command("/usr/sbin/brctl show")
     candlepin_log = simple_file("/var/log/candlepin/candlepin.log")
@@ -449,7 +449,7 @@ class DefaultSpecs(Specs):
     kernel_crash_kexec_post_notifiers = simple_file(
         "/sys/module/kernel/parameters/crash_kexec_post_notifiers"
     )
-    keyctl_show = simple_file("/usr/bin/keyctl show %:.platform")
+    keyctl_show = simple_command("/usr/bin/keyctl show %:.platform", keep_rc=True)
     kexec_crash_size = simple_file("/sys/kernel/kexec_crash_size")
     kpatch_list = simple_command("/usr/sbin/kpatch list")
     krb5 = glob_file([r"etc/krb5.conf", r"etc/krb5.conf.d/*"])
@@ -501,6 +501,7 @@ class DefaultSpecs(Specs):
     )
     ls_laZ = command_with_args('/bin/ls -laZ %s', ls.list_with_laZ, save_as='ls_laZ', keep_rc=True)
     ls_ldH = command_with_args('/bin/ls -ldH %s', ls.list_with_ldH, save_as='ls_ldH', keep_rc=True)
+    ls_ldZ = command_with_args('/bin/ls -ldZ %s', ls.list_with_ldZ, save_as='ls_ldZ', keep_rc=True)
     lsattr = command_with_args("/bin/lsattr %s", lsattr.paths_to_lsattr)
     lsblk = simple_command("/bin/lsblk")
     lsblk_pairs = simple_command(
@@ -546,7 +547,7 @@ class DefaultSpecs(Specs):
     messages = simple_file("/var/log/messages")
     modinfo_filtered_modules = command_with_args('modinfo %s', kernel.kernel_module_filters)
     modprobe = glob_file(["/etc/modprobe.conf", "/etc/modprobe.d/*.conf"])
-    mokutil_list_enrolled = simple_command("/bin/mokutil --list-enrolled")
+    mokutil_list_enrolled = simple_command("/bin/mokutil --list-enrolled", keep_rc=True)
     mokutil_sbstate = simple_command("/bin/mokutil --sb-state")
     mount = simple_command("/bin/mount")
     mountinfo = simple_file("/proc/self/mountinfo")
@@ -726,6 +727,7 @@ class DefaultSpecs(Specs):
     readlink_e_shift_cert_server = simple_command(
         "/usr/bin/readlink -e /etc/origin/node/certificates/kubelet-server-current.pem"
     )
+    rear_default_conf = simple_file("/usr/share/rear/conf/default.conf")
     rear_local_conf = simple_file("/etc/rear/local.conf")
     redhat_release = simple_file("/etc/redhat-release")
     repquota_agnpuv = simple_command("/usr/sbin/repquota -agnpuv")
